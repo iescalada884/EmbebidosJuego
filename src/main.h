@@ -3,6 +3,8 @@
 
 #define VGA_CTRL_BASE 0x44A00000
 
+#define SENSOR_BASE 0x44A20000
+
 struct position {
 	int x, y;
 };

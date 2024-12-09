@@ -7,14 +7,17 @@ LD_SRCS += \
 ../src/lscript.ld 
 
 C_SRCS += \
+../src/dibujos.c \
 ../src/mainF.c \
 ../src/pajaro.c 
 
 OBJS += \
+./src/dibujos.o \
 ./src/mainF.o \
 ./src/pajaro.o 
 
 C_DEPS += \
+./src/dibujos.d \
 ./src/mainF.d \
 ./src/pajaro.d 
 

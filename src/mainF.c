@@ -204,6 +204,8 @@ int main( void )
 static void lanueva ( void *pvParameters ) {
 	xil_printf("entro\n");
 	//mainP();
+	int *ptr = (int *) SENSOR_BASE;
+
 	dibujo_t *dibuP;
 	dibujo_t dib;
 	dib.dibujo = nave;
@@ -234,6 +236,13 @@ static void lanueva ( void *pvParameters ) {
 
 	    		xQueueSend(xQueue, &dibuP, 0UL);
 	    	}else count1++;
+	    	int data = ptr[0];
+	    	xil_printf("%d", data);
+	    	/**
+	    	 * Si funciona:
+	    	 * dib.posi.y = data
+	    	 *
+	    	 * */
 
 	    	usleep(15000);
 	    }
