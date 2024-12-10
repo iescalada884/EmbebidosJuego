@@ -133,3 +133,21 @@ void pintaImagen(dibujo_t *imagen){
 		}
 	}
 }
+
+void getBackground (int x, int y, struct position * posi,  struct color  * background) {
+	int *ptr = (int *)VGA_CTRL_BASE;
+
+	for(int i=0; i<x; i++){
+		for(int j=0; j<y; j++){
+			int index = i * x + j;
+			int val = ptr[(posi->y + i <<8) | posi->y + j];
+
+			struct color pix;
+			pix.r = (val & 0x0F) << 4;
+			pix.g = (val >> 4) & 0xF0;
+			pix.b = val & 0xF0;
+			background[index] = pix;
+		}
+	}
+
+}

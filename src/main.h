@@ -5,6 +5,13 @@
 
 #define SENSOR_BASE 0x44A20000
 
+/*PARAMETROS (MOVER SEGURAMENTE)*/
+#define MAX_HEIGTH 80
+#define MIN_HEIGTH  10
+#define DETECTION_RANGE 2 // cms
+#define MOVE_BIRD_TICK 100000 //us
+#define VELOCIDAD 1
+
 struct position {
 	int x, y;
 };

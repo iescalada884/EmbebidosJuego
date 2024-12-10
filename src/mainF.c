@@ -210,7 +210,7 @@ static void lanueva ( void *pvParameters ) {
 	dibujo_t dib;
 	dib.dibujo = nave;
 	dib.posi.x = 50;
-	dib.posi.y = 1;
+	dib.posi.y = 50;
 	dib.x = 32;
 	dib.y = 32;
 
@@ -218,35 +218,71 @@ static void lanueva ( void *pvParameters ) {
 	int count1 = 0;
 	int y = 1;
 	int inc = 1;
+	int lastPos = 80;
+	int birdPos = dib.posi.y;
 	while(1){
 
 	    	// una de cada 5 veces, mueve la nave en el eje X
-	    	if(count1==5){
-	    		y += inc * 1;
-	    		count1=0;
-	    		//rect(dib.posi,negro,dib.x,dib.y);
-	    		dib.posi.y = y;
 
-	    		if (y == 120) {
-	    			inc = -1;
+	    		count1 = 0;
+	    		int pos = ptr[0];
+	    		if (pos < lastPos) {
+	    			birdPos+= 1;
+	    		} else  if (pos > lastPos){
+	    			birdPos-=1;
 	    		}
-	    		if (y == 1) {
-	    			inc = 1;
-	    		}
+	    		//rect(dib.posi,negro,dib.x,dib.y);
+	    		dib.posi.y = birdPos;
 
 	    		xQueueSend(xQueue, &dibuP, 0UL);
-	    	}else count1++;
-	    	int data = ptr[0];
-	    	xil_printf("%d", data);
+
 	    	/**
 	    	 * Si funciona:
 	    	 * dib.posi.y = data
 	    	 *
 	    	 * */
-
-	    	usleep(15000);
-	    }
+	    	lastPos = pos;
+	    	//xil_printf("%d, %d, b: %d\n\r", pos, lastPos, birdPos);
+	    	usleep(3000);
 }
+
+	int objetivo = dib.posi.y;
+	int lastImput = 10;
+	while (1) {
+		int pos = ptr[0];
+		if (pos > lastImput + DETECTION_RANGE || pos < lastImput - DETECTION_RANGE) {
+			if (pos > MAX_HEIGTH) objetivo = MAX_HEIGTH;
+			else if (pos < MIN_HEIGTH) objetivo = MIN_HEIGTH;
+			else objetivo = pos;
+		}
+
+		// Moviento por tick
+		if (objetivo > birdPos) {
+			birdPos -= VELOCIDAD;
+		} else {
+			birdPos += VELOCIDAD;
+		}
+
+		/*
+		 * Idea coger fondo
+		 * fondo[dib.x][dib.y]
+		 *
+		 * setBackground ();
+		 * getBackground (dib.x, dib.y, &dib.posi, &fondo);
+		 * pinta()
+		 *
+		 */
+
+		dib.posi.y = birdPos;
+
+		xQueueSend(xQueue, &dibuP, 0UL);
+
+		lastImput = pos;
+
+		usleep(MOVE_BIRD_TICK);
+	}
+}
+
 
 static void pintaPorCola ( void *pvParameters )
 {
