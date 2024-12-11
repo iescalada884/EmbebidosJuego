@@ -224,36 +224,13 @@ static void lanueva ( void *pvParameters ) {
 	int inc = 1;
 	int lastPos = 80;
 	int birdPos = dib.posi.y;
-	while(1){
-
-	    	// una de cada 5 veces, mueve la nave en el eje X
-
-	    		count1 = 0;
-	    		int pos = ptr[0];
-	    		if (pos < lastPos) {
-	    			birdPos+= 1;
-	    		} else  if (pos > lastPos){
-	    			birdPos-=1;
-	    		}
-	    		//rect(dib.posi,negro,dib.x,dib.y);
-	    		dib.posi.y = birdPos;
-
-	    		xQueueSend(xQueue, &dibuP, 0UL);
-
-	    	/**
-	    	 * Si funciona:
-	    	 * dib.posi.y = data
-	    	 *
-	    	 * */
-	    	lastPos = pos;
-	    	//xil_printf("%d, %d, b: %d\n\r", pos, lastPos, birdPos);
-	    	usleep(3000);
-}
 
 	int objetivo = dib.posi.y;
 	int lastImput = 10;
+	struct color * fondo[dib.x][dib.y];
 	while (1) {
 		int pos = ptr[0];
+
 		if (pos > lastImput + DETECTION_RANGE || pos < lastImput - DETECTION_RANGE) {
 			if (pos > MAX_HEIGTH) objetivo = MAX_HEIGTH;
 			else if (pos < MIN_HEIGTH) objetivo = MIN_HEIGTH;
@@ -262,22 +239,21 @@ static void lanueva ( void *pvParameters ) {
 
 		// Moviento por tick
 		if (objetivo > birdPos) {
-			birdPos -= VELOCIDAD;
-		} else {
 			birdPos += VELOCIDAD;
+
+		} else if (objetivo < birdPos) {
+			birdPos -= VELOCIDAD;
+
 		}
 
-		/*
-		 * Idea coger fondo
-		 * fondo[dib.x][dib.y]
-		 *
-		 * setBackground ();
-		 * getBackground (dib.x, dib.y, &dib.posi, &fondo);
-		 * pinta()
-		 *
-		 */
+		//xil_printf("pos %d, %d, %d, %d, %d\n\r", pos, lastPos, lastImput, objetivo, birdPos);
 
-		dib.posi.y = birdPos;
+
+		//xQueueSend(xQueue, &fondo, 0UL);
+
+		//getBackground (dib.x, dib.y, &dib.posi, &fondo);
+
+		dib.posi.y = 100 - birdPos;
 
 		xQueueSend(xQueue, &dibuP, 0UL);
 

@@ -6,10 +6,10 @@
 #define SENSOR_BASE 0x44A20000
 
 /*PARAMETROS (MOVER SEGURAMENTE)*/
-#define MAX_HEIGTH 80
-#define MIN_HEIGTH  10
+#define MAX_HEIGTH 90
+#define MIN_HEIGTH  0
 #define DETECTION_RANGE 2 // cms
-#define MOVE_BIRD_TICK 100000 //us
+#define MOVE_BIRD_TICK 5000 //us
 #define VELOCIDAD 1
 
 struct position {
@@ -97,4 +97,6 @@ void mueve_bala();
 int mainP();
 
 void pintaImagen(dibujo_t *imagen);
+
+void getBackground (int x, int y, struct position * posi,  struct color  * background);
 #endif
