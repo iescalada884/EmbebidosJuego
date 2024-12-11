@@ -29,6 +29,7 @@ struct color {
 #define F {0xf0, 0x00, 0x00}
 #define W {0xff,0xff,0xff}
 #define N {0,0,0}
+#define L {0x47, 0xdd, 0xed}
 
 static const struct color negro = N;
 static const struct color azul_claro = AC;
@@ -40,6 +41,7 @@ static const struct color verde = C;
 static const struct color verde_oscuro = D;
 static const struct color amarillo = E;
 static const struct color rojo = F;
+static const struct color fondo = L;
 
 extern struct color nave[32][32];
 /*
@@ -63,35 +65,35 @@ typedef struct dibujo{
 	struct position posi;
 } dibujo_t;
 
-// Función que pinta un pixel en pantalla
+// Funciï¿½n que pinta un pixel en pantalla
 // X entre 0 y 159, Y entre 0 y 119,
 // R/G/B: colores - entre 0 y 255 (los cuatro bits menos significativos se ignoran)
 void pinta(int x, int y, struct color rgb);
 
-// Función que retorna el valor de un pixel en pantalla
+// Funciï¿½n que retorna el valor de un pixel en pantalla
 struct color pixel(int x, int y);
 
-// Función que pinta un rectángulo de un color
+// Funciï¿½n que pinta un rectï¿½ngulo de un color
 // Pos: esquina superior izquierda del rectangulo
-// Color: color del rectángulo
+// Color: color del rectï¿½ngulo
 // W: anchura, H: altura
 void rect (struct position pos, struct color col, int w, int h);
 
 
-// Función que pinta una imagen en la VGA.
+// Funciï¿½n que pinta una imagen en la VGA.
 // Solo pinta los puntos que no son de color alfa (en este caso, negro), que se quedan "transparentes".
 void imagen_11x11(struct position pos, struct color img[32][32]);
 
 
-// Mueve la náve automáticamente de derecha a izquierda o viceversa
+// Mueve la nï¿½ve automï¿½ticamente de derecha a izquierda o viceversa
 // El procedimiento para mover la nave es:
-//        borrar la nave de pantalla, calcular la nueva posición, pintar la nave
+//        borrar la nave de pantalla, calcular la nueva posiciï¿½n, pintar la nave
 void mueve_nave();
 
-// Inicializa una bala en la posición X
+// Inicializa una bala en la posiciï¿½n X
 void lanza_bala(int x);
 
-// Mueve la bala, en vertical, hasta y = 0. Cuando llega ahí la desactiva
+// Mueve la bala, en vertical, hasta y = 0. Cuando llega ahï¿½ la desactiva
 void mueve_bala();
 
 int mainP();
