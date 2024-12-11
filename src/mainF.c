@@ -102,6 +102,7 @@
 /* Xilinx includes. */
 #include "xil_printf.h"
 #include "xparameters.h"
+#include "freertosFuncs.h"
 #include "main.h"
 
 #define TIMER_ID	1
@@ -200,6 +201,9 @@ int main( void )
 	for( ;; );
 }
 
+void enviaDibujo(dibujo_t *dibujo) {
+	xQueueSend(xQueue, &dibujo, 0UL);
+}
 
 static void lanueva ( void *pvParameters ) {
 	xil_printf("entro\n");
