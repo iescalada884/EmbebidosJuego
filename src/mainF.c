@@ -228,20 +228,16 @@ static void lanueva ( void *pvParameters ) {
 	dibujo_t dib;
 	dib.dibujo = nave;
 	dib.posi.x = 50;
-	dib.posi.y = 50;
-	dib.x = 10;
-	dib.y = 10;
+	dib.posi.y = 10;
+	dib.x = 18;
+	dib.y = 20;
+
 
 	dibuP = &dib;
-	int count1 = 0;
-	int y = 1;
-	int inc = 1;
-	int lastPos = 80;
 	birdPos = dib.posi.y;
-
 	int objetivo = dib.posi.y;
-	int lastImput = 10;
-	struct color * fondo[dib.x][dib.y];
+	int lastImput = 80;
+
 	while (1) {
 		int pos = ptr[0];
 
@@ -260,9 +256,10 @@ static void lanueva ( void *pvParameters ) {
 
 		}
 
+
 		//xil_printf("pos %d, %d, %d, %d, %d\n\r", pos, lastPos, lastImput, objetivo, birdPos);
 
-
+		// 	struct color * fondo[dib.x][dib.y];
 		//xQueueSend(xQueue, &fondo, 0UL);
 
 		//getBackground (dib.x, dib.y, &dib.posi, &fondo);
