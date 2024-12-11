@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <sleep.h>
-#include "main.h"
+
 
 struct color amar = {255,255,0};
 static struct position pos_nave={30,90};

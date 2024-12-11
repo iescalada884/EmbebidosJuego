@@ -18,7 +18,8 @@ src/mainF.o src/mainF.o: ../src/mainF.c \
  ../../juego_bsp/microblaze_0/include/timers.h \
  ../../juego_bsp/microblaze_0/include/task.h \
  ../../juego_bsp/microblaze_0/include/xil_printf.h \
- ../../juego_bsp/microblaze_0/include/bspconfig.h ../src/main.h
+ ../../juego_bsp/microblaze_0/include/bspconfig.h ../src/freertosFuncs.h \
+ ../src/main.h
 
 ../../juego_bsp/microblaze_0/include/FreeRTOS.h:
 
@@ -59,5 +60,7 @@ src/mainF.o src/mainF.o: ../src/mainF.c \
 ../../juego_bsp/microblaze_0/include/xil_printf.h:
 
 ../../juego_bsp/microblaze_0/include/bspconfig.h:
+
+../src/freertosFuncs.h:
 
 ../src/main.h:
