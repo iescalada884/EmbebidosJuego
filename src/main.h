@@ -10,8 +10,15 @@
 #define MIN_HEIGTH  0
 #define DETECTION_RANGE 2 // cms
 #define MOVE_BIRD_TICK 5000 //us
+#define MOVE_PIPE_TICK 30000
 #define VELOCIDAD 1
 
+//
+extern int birdPos;
+
+extern int pos_pajaro_x;
+extern int size_pajaro_x;
+extern int size_pajaro_y;
 struct position {
 	int x, y;
 };
@@ -43,21 +50,7 @@ static const struct color amarillo = E;
 static const struct color rojo = F;
 static const struct color fondo = L;
 
-extern struct color nave[32][32];
-/*
-	    {N,N,N,N,N,N,G,G,G,G,G,G,G,G,N,N,N,N, N},
-		{N,N,N,N,G,G,AC,AC,AC,AC,AC,G,W,W,G,N,N,N,N},
-		{N,N,N,G,AC,AC,A,A,A,A,G,W,W,W,W,G,N,N,N},
-		{N,N,G,AC,A,A,A,A,A,A,G,W,W,W,G,W,G,N,N},
-		{N,G,A,A,A,A,A,A,A,A,G,W,W,W,G,W,G,N,N},
-		{N,G,G,G,G,G,A,A,A,A,A,G,W,W,W,W,G,N,N},
-		{G,AC,AC,AC,AC,AC,G,A,A,A,A,A,G,G,G,G,G,G,N},
-		{G,A,AC,AC,AC,A,G,A,A,A,A,G,F,F,F,F,F,F,G},
-		{N,G,G,G,G,G,B,B,B,A,A,A},
-		{A,E,F,E,A,A,A,E,F,E,A},
-		{N,N,E,N,N,N,N,N,E,N,N}
-
-};*/
+extern struct color nave[18][20];
 
 typedef struct dibujo{
 	struct color * dibujo;

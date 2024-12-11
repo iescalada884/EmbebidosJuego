@@ -8,15 +8,18 @@ LD_SRCS += \
 
 C_SRCS += \
 ../src/mainF.c \
-../src/pajaro.c 
+../src/pajaro.c \
+../src/tuberia.c 
 
 OBJS += \
 ./src/mainF.o \
-./src/pajaro.o 
+./src/pajaro.o \
+./src/tuberia.o 
 
 C_DEPS += \
 ./src/mainF.d \
-./src/pajaro.d 
+./src/pajaro.d \
+./src/tuberia.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes

@@ -19,7 +19,7 @@ src/mainF.o src/mainF.o: ../src/mainF.c \
  ../../juego_bsp/microblaze_0/include/task.h \
  ../../juego_bsp/microblaze_0/include/xil_printf.h \
  ../../juego_bsp/microblaze_0/include/bspconfig.h ../src/freertosFuncs.h \
- ../src/main.h
+ ../src/main.h ../src/tuberia.h
 
 ../../juego_bsp/microblaze_0/include/FreeRTOS.h:
 
@@ -64,3 +64,5 @@ src/mainF.o src/mainF.o: ../src/mainF.c \
 ../src/freertosFuncs.h:
 
 ../src/main.h:
+
+../src/tuberia.h:

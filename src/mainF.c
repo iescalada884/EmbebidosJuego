@@ -104,6 +104,8 @@
 #include "xparameters.h"
 #include "freertosFuncs.h"
 #include "main.h"
+#include "tuberia.h"
+#include <stdlib.h>
 
 #define TIMER_ID	1
 #define DELAY_10_SECONDS	10000UL
@@ -115,6 +117,7 @@
 static void vTimerCallback( TimerHandle_t pxTimer );
 static void lanueva ( void *pvParameters );
 static void pintaPorCola ( void *pvParameters );
+static void larenueva ( void *pvParameters );
 void vApplicationTickHook(void);
 /*-----------------------------------------------------------*/
 
@@ -122,12 +125,14 @@ void vApplicationTickHook(void);
 file. */
 
 
-static TaskHandle_t xRxTask;
+static TaskHandle_t xRxTask,xRxTask2,xRxTask3;
+
 static QueueHandle_t xQueue = NULL;
 static TimerHandle_t xTimer = NULL;
 int contador = 0;
 char HWstring[15] = "Hello World";
 long RxtaskCntr = 0;
+int birdPos = 50;
 
 int main( void )
 {
@@ -145,19 +150,28 @@ int main( void )
 //					tskIDLE_PRIORITY +1,			/* The task runs at the idle priority. */
 //					&xTxTask );
 
-	xTaskCreate( lanueva,
-				 ( const char * ) "GB",
-				 configMINIMAL_STACK_SIZE,
-				 NULL,
-				 tskIDLE_PRIORITY + 1,
-				 &xRxTask );
+	xTaskCreate( larenueva,
+				     ( const char * ) "pipe",
+					 configMINIMAL_STACK_SIZE,
+					 NULL,
+					 tskIDLE_PRIORITY + 1,
+					 &xRxTask );
 
-	xTaskCreate( pintaPorCola,
-				 ( const char * ) "GB",
+	xTaskCreate( lanueva,
+				 ( const char * ) "paja",
 				 configMINIMAL_STACK_SIZE,
 				 NULL,
 				 tskIDLE_PRIORITY + 1,
-				 &xRxTask );
+				 &xRxTask2);
+
+
+	/*
+	xTaskCreate( pintaPorCola,
+				 ( const char * ) "cola",
+				 configMINIMAL_STACK_SIZE,
+				 NULL,
+				 tskIDLE_PRIORITY + 1,
+				 &xRxTask3);*/
 	/* Create the queue used by the tasks.  The Rx task has a higher priority
 	than the Tx task, so will preempt the Tx task and remove values from the
 	queue as soon as the Tx task writes to the queue - therefore the queue can
@@ -215,15 +229,15 @@ static void lanueva ( void *pvParameters ) {
 	dib.dibujo = nave;
 	dib.posi.x = 50;
 	dib.posi.y = 50;
-	dib.x = 32;
-	dib.y = 32;
+	dib.x = 10;
+	dib.y = 10;
 
 	dibuP = &dib;
 	int count1 = 0;
 	int y = 1;
 	int inc = 1;
 	int lastPos = 80;
-	int birdPos = dib.posi.y;
+	birdPos = dib.posi.y;
 
 	int objetivo = dib.posi.y;
 	int lastImput = 10;
@@ -263,6 +277,22 @@ static void lanueva ( void *pvParameters ) {
 	}
 }
 
+static void larenueva ( void *pvParameters ) {
+	xil_printf("inicio tuberia\n");
+	tuberiaInit();
+	int hueco_arriba = rand() % 90;
+	int hueco_abajo = 25 + (rand() % 15) + hueco_arriba;
+	int muerto = 0;
+	struct tuberia tuberia = creaTuberia(hueco_arriba, hueco_abajo);
+	while(!muerto)
+	{
+		usleep(MOVE_PIPE_TICK);
+		mueveTuberias(1);
+		muerto = calculaColisiones();
+	}
+}
+
+
 
 static void pintaPorCola ( void *pvParameters )
 {
@@ -276,6 +306,7 @@ static void pintaPorCola ( void *pvParameters )
 							portMAX_DELAY );	/* Wait without a timeout for data. */
 
 			pintaImagen(dibu);
+			usleep(MOVE_PIPE_TICK);
 		}
 
 
