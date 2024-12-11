@@ -14,7 +14,7 @@ int indice_tuberia = 0;
 
 int pos_pajaro_x;
 int pos_pajaro_y;
-int size_pajaro_x = 16;
+int size_pajaro_x = 18;
 int size_pajaro_y = 20;
 
 struct tuberia creaTuberia(int hueco_arriba, int hueco_abajo)
