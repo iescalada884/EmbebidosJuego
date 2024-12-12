@@ -1,16 +1,18 @@
+#include "dibujos.h"
 #include <stdio.h>
-#include "main.h"
 #include "tuberia.h"
-
-
-int pos_pajaro_x = 50;
-int size_pajaro_x = 18;
-int size_pajaro_y = 20;
+#include "pajaro.h"
+#include "globals.h"
 
 int indice_tuberia = 0;
 
 void tuberiaInit()
 {
+	struct position pos_ini;
+	pos_ini.x = 0;
+	pos_ini.y = 0;
+	rect(pos_ini, fondo, 160, 120);
+
 	for (int i = 0; i < MAX_TUBERIAS; i++) {
 		tuberias[i].x = INIT;
 	}
@@ -63,13 +65,15 @@ void mueveTuberias(int distancia)
 int calculaColisiones()
 {
     int muerto = 0;
+    int actual_pos;
+	actual_pos = BIRD_OFFSET - pos_pajaro_y;
     for (int i = 0; i < MAX_TUBERIAS; i++)
     {
         if (tuberias[i].x == INIT) continue;
         //calcula coordenada x coincidente
-        if (tuberias[i].x <= pos_pajaro_x + size_pajaro_x && tuberias[i].x + TUBE_X >= pos_pajaro_x) {
+        if (tuberias[i].x <= (pos_pajaro_x + size_pajaro_x) && (tuberias[i].x + TUBE_X) >= pos_pajaro_x) {
             //calcula coordenada y coincidente
-            if (tuberias[i].hueco_arriba >= birdPos || tuberias[i].hueco_abajo <= birdPos + size_pajaro_y)
+            if (tuberias[i].hueco_arriba >= actual_pos || tuberias[i].hueco_abajo <= (actual_pos + size_pajaro_y))
             {
                 muerto = 1;
             }

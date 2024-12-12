@@ -1,6 +1,10 @@
-src/tuberia.o src/tuberia.o: ../src/tuberia.c ../src/main.h \
- ../src/tuberia.h
+src/tuberia.o src/tuberia.o: ../src/tuberia.c ../src/dibujos.h \
+ ../src/tuberia.h ../src/pajaro.h ../src/globals.h
 
-../src/main.h:
+../src/dibujos.h:
 
 ../src/tuberia.h:
+
+../src/pajaro.h:
+
+../src/globals.h:

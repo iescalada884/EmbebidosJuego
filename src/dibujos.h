@@ -1,24 +1,8 @@
-#ifndef __MAIN_H__
-#define __MAIN_H__
+#ifndef __DIBUJOS_H__
+#define __DIBUJOS_H__
 
 #define VGA_CTRL_BASE 0x44A00000
 
-#define SENSOR_BASE 0x44A20000
-
-/*PARAMETROS (MOVER SEGURAMENTE)*/
-#define MAX_HEIGTH 90
-#define MIN_HEIGTH  0
-#define DETECTION_RANGE 2 // cms
-#define MOVE_BIRD_TICK 5000 //us
-#define MOVE_PIPE_TICK 30000
-#define VELOCIDAD 1
-
-//
-extern int birdPos;
-
-extern int pos_pajaro_x;
-extern int size_pajaro_x;
-extern int size_pajaro_y;
 struct position {
 	int x, y;
 };
@@ -37,6 +21,10 @@ struct color {
 #define W {0xff,0xff,0xff}
 #define N {0,0,0}
 #define L {0x47, 0xdd, 0xed}
+#define H {0x00, 0xbf, 0xd7}
+#define I {0xaa, 0x2d, 0x24}
+#define J {0x08, 0x76, 0x94}
+#define K {0x34, 0x0E, 0x0C}
 
 static const struct color negro = N;
 static const struct color azul_claro = AC;
@@ -49,8 +37,6 @@ static const struct color verde_oscuro = D;
 static const struct color amarillo = E;
 static const struct color rojo = F;
 static const struct color fondo = L;
-
-extern struct color nave[18][20];
 
 typedef struct dibujo{
 	struct color * dibujo;
@@ -71,25 +57,6 @@ struct color pixel(int x, int y);
 // Color: color del rect�ngulo
 // W: anchura, H: altura
 void rect (struct position pos, struct color col, int w, int h);
-
-
-// Funci�n que pinta una imagen en la VGA.
-// Solo pinta los puntos que no son de color alfa (en este caso, negro), que se quedan "transparentes".
-void imagen_11x11(struct position pos, struct color img[32][32]);
-
-
-// Mueve la n�ve autom�ticamente de derecha a izquierda o viceversa
-// El procedimiento para mover la nave es:
-//        borrar la nave de pantalla, calcular la nueva posici�n, pintar la nave
-void mueve_nave();
-
-// Inicializa una bala en la posici�n X
-void lanza_bala(int x);
-
-// Mueve la bala, en vertical, hasta y = 0. Cuando llega ah� la desactiva
-void mueve_bala();
-
-int mainP();
 
 void pintaImagen(dibujo_t *imagen);
 

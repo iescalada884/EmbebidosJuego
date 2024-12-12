@@ -1,4 +1,4 @@
-src/mainF.o src/mainF.o: ../src/mainF.c \
+src/FreertosMain.o src/FreertosMain.o: ../src/FreertosMain.c \
  ../../juego_bsp/microblaze_0/include/FreeRTOS.h \
  ../../juego_bsp/microblaze_0/include/FreeRTOSConfig.h \
  ../../juego_bsp/microblaze_0/include/xparameters.h \
@@ -19,7 +19,7 @@ src/mainF.o src/mainF.o: ../src/mainF.c \
  ../../juego_bsp/microblaze_0/include/task.h \
  ../../juego_bsp/microblaze_0/include/xil_printf.h \
  ../../juego_bsp/microblaze_0/include/bspconfig.h ../src/freertosFuncs.h \
- ../src/main.h ../src/tuberia.h
+ ../src/dibujos.h ../src/tuberia.h ../src/pajaro.h
 
 ../../juego_bsp/microblaze_0/include/FreeRTOS.h:
 
@@ -63,6 +63,8 @@ src/mainF.o src/mainF.o: ../src/mainF.c \
 
 ../src/freertosFuncs.h:
 
-../src/main.h:
+../src/dibujos.h:
 
 ../src/tuberia.h:
+
+../src/pajaro.h:
