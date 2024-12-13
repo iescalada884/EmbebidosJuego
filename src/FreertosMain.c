@@ -274,7 +274,7 @@ static void larenueva ( void *pvParameters ) {
 		{
 		//for (int i = 0; i > )
 		vTaskDelay(wait);
-		mueveTuberias(1);
+		mueveTuberias();
 		muerto = calculaColisiones();
 
 		while(muerto)

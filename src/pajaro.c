@@ -44,36 +44,6 @@ struct color pajaro_frame2[size_pajaro_y][size_pajaro_x] = {
 	    {L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L, L},
 	};
 
-struct color power[6][9] = {{R,R,L,L,L,L,L,R,R},
-							{R,R,R,R,L,R,R,R,R},
-							{L,R,R,R,R,R,R,R,L},
-							{L,L,R,R,R,R,R,L,L},
-							{L,L,L,R,R,R,L,L,L},
-							{L,L,L,L,R,L,L,L,L}
-	};
-
-struct color power_invincible[7][11] = {
-    {L,L,L,L,L,R,R,L,L,L,L},
-    {L,L,L,L,R,W,R,L,L,L,L},
-    {L,L,L,R,W,W,W,R,L,L,L},
-    {L,L,R,W,W,R,W,W,R,L,L},
-    {L,L,L,R,W,W,W,R,L,L,L},
-    {L,L,L,L,R,W,R,L,L,L,L},
-    {L,L,L,L,L,R,R,L,L,L,L}
-};
-
-struct color power_double_points[7][11] = {
-    {L,L,L,L,L,E,L,L,L,L,L},
-    {L,L,L,L,E,E,E,L,L,L,L},
-    {L,L,L,E,E,W,E,E,L,L,L},
-    {L,L,E,E,W,W,W,E,E,L,L},
-    {L,L,L,E,E,W,E,E,L,L,L},
-    {L,L,L,L,E,E,E,L,L,L,L},
-    {L,L,L,L,L,E,L,L,L,L,L}
-};
-
-
-
 // globales del pajaro
 int pos_pajaro_y = 50;
 int pos_pajaro_x = 50;

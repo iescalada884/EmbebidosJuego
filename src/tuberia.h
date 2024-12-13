@@ -15,6 +15,6 @@ struct tuberia tuberias[MAX_TUBERIAS];
 
 struct tuberia creaTuberia(int hueco_arriba, int hueco_abajo);
 
-void mueveTuberias(int distancia);
+void mueveTuberias();
 int calculaColisiones();
 void tuberiaInit();

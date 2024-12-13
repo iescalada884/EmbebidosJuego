@@ -8,6 +8,7 @@ int indice_tuberia = 0;
 
 void tuberiaInit()
 {
+    puntuacion = 0;
 	struct position pos_ini;
 	pos_ini.x = 0;
 	pos_ini.y = 0;
@@ -33,12 +34,12 @@ struct tuberia creaTuberia(int hueco_arriba, int hueco_abajo)
     return tuberia;
 }
 
-void mueveTuberias(int distancia)
+void mueveTuberias()
 {
     for (int i = 0; i < MAX_TUBERIAS; i++)
     {
         if (tuberias[i].x == INIT) continue;
-        tuberias[i].x -= distancia;
+        tuberias[i].x -= 1;
 
         //pinta arriba
         struct position pos_ini;
@@ -49,13 +50,13 @@ void mueveTuberias(int distancia)
         pos_ini.x = tuberias[i].x;
         rect(pos_ini, verde_oscuro, 1, tuberias[i].hueco_arriba);
         pos_ini.x = tuberias[i].x + 1;
-        rect(pos_ini, verde, distancia, tuberias[i].hueco_arriba);
+        rect(pos_ini, verde, 1, tuberias[i].hueco_arriba);
         
         
         
         //despinta lo antiguo
         pos_ini.x = tuberias[i].x + TUBE_X + 1;
-        rect(pos_ini, fondo, distancia, tuberias[i].hueco_arriba);
+        rect(pos_ini, fondo, 1, tuberias[i].hueco_arriba);
 
         //pinta abajo
         pos_ini.y = tuberias[i].hueco_abajo;
@@ -64,11 +65,11 @@ void mueveTuberias(int distancia)
         pos_ini.x = tuberias[i].x;
         rect(pos_ini, verde_oscuro, 1, TUBE_Y);
         pos_ini.x = tuberias[i].x + 1;
-        rect(pos_ini, verde, distancia, TUBE_Y);
+        rect(pos_ini, verde, 1, TUBE_Y);
         
         //despinta lo antiguo
         pos_ini.x = tuberias[i].x + TUBE_X + 1;
-        rect(pos_ini, fondo, distancia, TUBE_Y);
+        rect(pos_ini, fondo, 1, TUBE_Y);
 
         //pinta borde en el hueco
         pos_ini.x = tuberias[i].x;
@@ -87,9 +88,14 @@ int calculaColisiones()
 	actual_pos = BIRD_OFFSET - pos_pajaro_y;
     for (int i = 0; i < MAX_TUBERIAS; i++)
     {
-        if (tuberias[i].x == INIT) continue;
+        if (tuberias[i].x == INIT || estado_pajaro == INVENCIBLE) continue;
         //calcula coordenada x coincidente
         if (tuberias[i].x <= (pos_pajaro_x + size_pajaro_x) && (tuberias[i].x + TUBE_X) >= pos_pajaro_x) {
+
+            //si acaba de pasar la tuberia suma punto
+            if ((tuberias[i].x + TUBE_X) == pos_pajaro_x + 1) {
+                puntuacion++;
+            }
             //calcula coordenada y coincidente
             if (tuberias[i].hueco_arriba >= actual_pos || tuberias[i].hueco_abajo <= (actual_pos + size_pajaro_y))
             {

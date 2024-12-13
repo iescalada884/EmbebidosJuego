@@ -12,5 +12,7 @@
 extern int pos_pajaro_y ; // Posicion en el eje y del pajaro
 extern int pos_pajaro_x;
 
+extern int puntuacion;
+
 extern estado_t estado_pajaro;
 #endif
