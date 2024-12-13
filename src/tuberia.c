@@ -63,7 +63,7 @@ void mueveTuberias(int distancia)
         rect(pos_ini, negro, 1, TUBE_Y);
         pos_ini.x = tuberias[i].x;
         rect(pos_ini, negro, 1, TUBE_Y);
-        pos_ini.x = tuberias[i].x + 1
+        pos_ini.x = tuberias[i].x + 1;
         rect(pos_ini, verde, distancia, TUBE_Y);
         
         //despinta lo antiguo
