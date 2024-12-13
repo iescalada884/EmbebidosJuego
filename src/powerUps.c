@@ -21,7 +21,7 @@ struct color power[6][9] = {
 	{L,L,L,L,R,L,L,L,L}
 	};
 
-struct color power_invincible[7][11] = {
+struct color power_invencible[7][11] = {
     {L,L,L,L,L,R,R,L,L,L,L},
     {L,L,L,L,R,W,R,L,L,L,L},
     {L,L,L,R,W,W,W,R,L,L,L},
@@ -43,12 +43,19 @@ struct color power_double_points[7][11] = {
 
 void spawn_powerUp() {
 
-    powerUp.dibujo = power;
-    powerUp.posi = (struct position){pos_pajaro_x, 100};
+	if ((rand() % 10) > 5) {
+		powerUp.dibujo = power_invencible;
+		tipo_power = INVENCIBLE;
+	} else {
+		powerUp.dibujo = power_double_points;
+		tipo_power = DOBLE_P;
+	}
+
+    powerUp.posi = (struct position){pos_pajaro_x + 5, rand()%100};
     powerUp.x = 11;
     powerUp.y = 7;
 
-    pintaImagen(powerUp);
+    pintaImagen(&powerUp);
 
 }
 

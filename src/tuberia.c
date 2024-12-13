@@ -5,9 +5,10 @@
 #include "globals.h"
 
 int indice_tuberia = 0;
-
+int puntuacion = 0;
 void tuberiaInit()
 {
+	estado_pajaro = INVENCIBLE;
     puntuacion = 0;
 	struct position pos_ini;
 	pos_ini.x = 0;
@@ -88,14 +89,13 @@ int calculaColisiones()
 	actual_pos = BIRD_OFFSET - pos_pajaro_y;
     for (int i = 0; i < MAX_TUBERIAS; i++)
     {
+    	//si acaba de pasar la tuberia suma punto
+    	if ((tuberias[i].x + TUBE_X) == pos_pajaro_x + 1) {
+    	    puntuacion++;
+    	}
         if (tuberias[i].x == INIT || estado_pajaro == INVENCIBLE) continue;
         //calcula coordenada x coincidente
         if (tuberias[i].x <= (pos_pajaro_x + size_pajaro_x) && (tuberias[i].x + TUBE_X) >= pos_pajaro_x) {
-
-            //si acaba de pasar la tuberia suma punto
-            if ((tuberias[i].x + TUBE_X) == pos_pajaro_x + 1) {
-                puntuacion++;
-            }
             //calcula coordenada y coincidente
             if (tuberias[i].hueco_arriba >= actual_pos || tuberias[i].hueco_abajo <= (actual_pos + size_pajaro_y))
             {

@@ -32,7 +32,7 @@ C_DEPS += \
 src/%.o: ../src/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MicroBlaze gcc compiler'
-	mb-gcc -Wall -O0 -g3 -I../../juego_bsp/microblaze_0/include -I"D:\Documentos\Universidad\Vivado\Practicas\pract_8\pract_8.sdk\juego\src" -c -fmessage-length=0 -MT"$@" -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	mb-gcc -Wall -O0 -g3 -I../../juego_bsp/microblaze_0/include -I"D:\Documentos\Universidad\Vivado\Practicas\pract_8\pract_8.sdk\juego\src" -c -fmessage-length=0 -MT"$@" -I../../juego_bsp/microblaze_0/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

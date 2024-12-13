@@ -12,4 +12,6 @@
 
 #define numPowerUps 3
 
+void spawn_powerUp();
+
 

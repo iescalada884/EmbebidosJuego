@@ -107,6 +107,8 @@
 #include "dibujos.h"
 #include "tuberia.h"
 #include "pajaro.h"
+#include "globals.h"
+#include "powerUps.h"
 #include <stdlib.h>
 #define TIMER_ID	1
 #define DELAY_10_SECONDS	10000UL
@@ -260,17 +262,23 @@ void main_bird ( void *pvParameters ) {
 }
 
 static void larenueva ( void *pvParameters ) {
-	int wait = pdMS_TO_TICKS(MOVE_PIPE_TICK);
-
+	int time = MOVE_PIPE_TICK;
+	int iteraciones = 120;
+	int max = iteraciones;
 	xil_printf("inicio tuberia\n");
 	tuberiaInit();
 	int muerto = 0;
 	while(1)
 	{
+		spawn_powerUp();
+
+		if (time > 10){time = MOVE_PIPE_TICK - puntuacion * 5;}
+		int wait = pdMS_TO_TICKS(time);
 		int hueco_arriba = rand() % 90;
 		int hueco_abajo = 25 + (rand() % 15) + hueco_arriba;
 		creaTuberia(hueco_arriba, hueco_abajo);
-		for (int i = 0; i < 90; i++)
+		int iteraciones = 60 + rand()% (max - puntuacion) ;
+		for (int i = 0; i < iteraciones; i++)
 		{
 		//for (int i = 0; i > )
 		vTaskDelay(wait);
@@ -280,6 +288,8 @@ static void larenueva ( void *pvParameters ) {
 		while(muerto)
 			vTaskDelay(wait);
 		}
+
+
 
 	}
 }
