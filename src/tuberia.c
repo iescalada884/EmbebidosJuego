@@ -45,19 +45,30 @@ void mueveTuberias(int distancia)
         pos_ini.x = tuberias[i].x;
         pos_ini.y = 0;
         rect(pos_ini, verde, distancia, tuberias[i].hueco_arriba);
+        rect(pos_ini, verde_oscuro, 1, tuberias[i].hueco_arriba);
+        rect(pos_ini + TUBE_X, verde_oscuro, 1, tuberias[i].hueco_arriba);
         
         //despinta lo antiguo
-        pos_ini.x = tuberias[i].x + TUBE_X;
+        pos_ini.x = tuberias[i].x + TUBE_X + 1;
         rect(pos_ini, fondo, distancia, tuberias[i].hueco_arriba);
 
         //pinta abajo
         pos_ini.x = tuberias[i].x;
         pos_ini.y = tuberias[i].hueco_abajo;
         rect(pos_ini, verde, distancia, TUBE_Y);
+        rect(pos_ini, verde_oscuro, 1, TUBE_Y);
+        rect(pos_ini + TUBE_X, verde_oscuro, 1, TUBE_Y);
         
         //despinta lo antiguo
-        pos_ini.x = tuberias[i].x + TUBE_X;
+        pos_ini.x = tuberias[i].x + TUBE_X + 1;
         rect(pos_ini, fondo, distancia, TUBE_Y);
+
+        //pinta borde en el hueco
+        pos_ini.x = tuberias[i].x;
+        pos_ini.y = tuberias[i].hueco_arriba;
+        rect(pos_ini, verde_oscuro, TUBE_X, 1);
+        pos_ini.y = tuberias[i].hueco_abajo;
+        rect(pos_ini, verde_oscuro, TUBE_X, 1);
     }
     
 }
