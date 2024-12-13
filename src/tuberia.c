@@ -45,9 +45,9 @@ void mueveTuberias(int distancia)
         
         pos_ini.y = 0;
         pos_ini.x = tuberias[i].x + TUBE_X;
-        rect(pos_ini, negro, 1, tuberias[i].hueco_arriba);
+        rect(pos_ini, verde_oscuro, 1, tuberias[i].hueco_arriba);
         pos_ini.x = tuberias[i].x;
-        rect(pos_ini, negro, 1, tuberias[i].hueco_arriba);
+        rect(pos_ini, verde_oscuro, 1, tuberias[i].hueco_arriba);
         pos_ini.x = tuberias[i].x + 1;
         rect(pos_ini, verde, distancia, tuberias[i].hueco_arriba);
         
@@ -59,10 +59,10 @@ void mueveTuberias(int distancia)
 
         //pinta abajo
         pos_ini.y = tuberias[i].hueco_abajo;
-        pos_ini.x = tuberias[i].x TUBE_X;
-        rect(pos_ini, negro, 1, TUBE_Y);
+        pos_ini.x = tuberias[i].x + TUBE_X;
+        rect(pos_ini, verde_oscuro, 1, TUBE_Y);
         pos_ini.x = tuberias[i].x;
-        rect(pos_ini, negro, 1, TUBE_Y);
+        rect(pos_ini, verde_oscuro, 1, TUBE_Y);
         pos_ini.x = tuberias[i].x + 1;
         rect(pos_ini, verde, distancia, TUBE_Y);
         
@@ -73,9 +73,9 @@ void mueveTuberias(int distancia)
         //pinta borde en el hueco
         pos_ini.x = tuberias[i].x;
         pos_ini.y = tuberias[i].hueco_arriba - 1;
-        rect(pos_ini, negro, TUBE_X, 1);
+        rect(pos_ini, verde_oscuro, TUBE_X, 1);
         pos_ini.y = tuberias[i].hueco_abajo;
-        rect(pos_ini, negro, TUBE_X, 1);
+        rect(pos_ini, verde_oscuro, TUBE_X, 1);
     }
     
 }
