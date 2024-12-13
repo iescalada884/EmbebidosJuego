@@ -226,7 +226,9 @@ void main_bird ( void *pvParameters ) {
 	int wait = pdMS_TO_TICKS(MOVE_BIRD_TICK);
 	xil_printf("Iniciado Pajaro\n\r");
 	//mainP();
+	volatile int * disp =(int *) 0x44A30000;
 
+	disp[0] = 2;
 
 	// Imagen del pajaro
 	dibujo_t *dibuP;
@@ -243,13 +245,13 @@ void main_bird ( void *pvParameters ) {
 	int tickCount = 0;
 	while (1) {
 		tickCount++;
-		if (tickCount == 3) {
+		if (tickCount == FRAMES_ANIMATION) {
 			dib.dibujo = pajaro_frame2;
-		} else if (tickCount == 6) {
+		} else if (tickCount == 2*FRAMES_ANIMATION) {
 			tickCount = 0;
-			dib.dibujo = pajaro_frame2;
+			dib.dibujo = pajaro;
 		}
-		dib.posi.y = BIRD_OFFSET - updateBirdPos();
+		dib.posi.y = BIRD_OFFSET - updateBirdPos(dibuP);
 
 		enviaDibujo(dibuP);
 

@@ -1,6 +1,6 @@
 #ifndef __PAJA_H__
 #define __PAJA_H__
-
+#include "dibujos.h"
 /*************************/
 /**PARAMETROS DEL SENSOR**/
 /*************************/
@@ -19,13 +19,17 @@
 #define size_pajaro_x 20
 #define size_pajaro_y 16
 
-#define FRAMES_ANIMATION 2
+#define FRAMES_ANIMATION 10
 
 #define BIRD_OFFSET 100 // La posicion en y es siempre BIRD_OFFSET - birdPos (para solucionar valores inversos en el sensor)
 
 
 extern struct color pajaro[size_pajaro_y][size_pajaro_x];
 extern struct color pajaro_frame2[size_pajaro_y][size_pajaro_x];
+
+// Estado
+enum ESTADO {NORMAL, INVENCIBLE, DOBLE_P, MUERTO};
+typedef enum ESTADO estado_t;
 
 /************************/
 /*******FUNCIONES********/
@@ -36,7 +40,7 @@ extern struct color pajaro_frame2[size_pajaro_y][size_pajaro_x];
  *
  * @return la posicion del pajaro
  */
-int updateBirdPos ();
+int updateBirdPos (dibujo_t * pajaro);
 
 /**
  * Inicializa las variables del sistema de moviento

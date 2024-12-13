@@ -12,4 +12,5 @@
 extern int pos_pajaro_y ; // Posicion en el eje y del pajaro
 extern int pos_pajaro_x;
 
+extern estado_t estado_pajaro;
 #endif

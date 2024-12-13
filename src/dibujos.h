@@ -17,7 +17,7 @@ struct color {
 #define C {0x00, 0x80, 0x00}
 #define D {0x00, 0x20, 0x00}
 #define E {0xf0, 0xf0, 0x00}
-#define F {0xf0, 0x00, 0x00}
+#define R {0xf0, 0x00, 0x00}
 #define W {0xff,0xff,0xff}
 #define N {0,0,0}
 #define L {0x47, 0xdd, 0xed}
@@ -35,7 +35,7 @@ static const struct color azul_oscuro = B;
 static const struct color verde = C;
 static const struct color verde_oscuro = D;
 static const struct color amarillo = E;
-static const struct color rojo = F;
+static const struct color rojo = R;
 static const struct color fondo = L;
 
 typedef struct dibujo{
